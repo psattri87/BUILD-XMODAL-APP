@@ -38,7 +38,7 @@ function App() {
 
   function validateDate(dob) {
     if (new Date(dob).getTime() > new Date().getTime()) {
-      alert("Invalid email. Please check your email address.");
+      alert("Invalid phone number. Please enter a 10-digit phone number.");
     }
   }
 
