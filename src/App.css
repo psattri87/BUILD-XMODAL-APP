@@ -4,6 +4,27 @@
   padding: 2rem;
   text-align: center;
 }
+
+.modal{
+  position: fixed;
+  width: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 50px;
+  z-index: 1001;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
 button{
   background-color:rgb(48, 131, 255);
   color: white;
@@ -26,14 +47,6 @@ label{
   font-weight: bold;
 }
 
-form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  align-items: center;
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -44,14 +57,22 @@ form{
   z-index: 1000;
 }
 
-.form-container {
-  position: fixed;
-  width: 40%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 50px;
-  z-index: 1001;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.submit-button{
+
+}
+
+#phone{
+
+}
+
+#email{
+
+}
+
+#dob{
+
+}
+
+#username{
+  
 }

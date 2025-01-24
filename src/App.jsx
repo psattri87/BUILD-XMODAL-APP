@@ -37,13 +37,12 @@ function App() {
   }
 
   function validateDate(dob) {
-    if(new Date(dob).getTime() > new Date().getTime()){
-      alert("Invalid email. Please check your email address.")
+    if (new Date(dob).getTime() > new Date().getTime()) {
+      alert("Invalid email. Please check your email address.");
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     validatePhoneNumber(formData.phone);
     validateDate(formData.dob);
     console.log("Form submitted:", formData);
@@ -61,17 +60,17 @@ function App() {
     <div>
       <h1>User Details Modal</h1>
       <button onClick={openForm}>Open Form</button>
-
       {formVisible && (
         <>
           <div className="overlay" onClick={hideForm}></div>
-          <div className="form-container">
-            <form onSubmit={handleSubmit}>
+          <div className="modal">
+            <div className="modal-content">
               <h2>Fill Details</h2>
               <label>Username:</label>
               <input
                 type="text"
                 name="name"
+                id="username"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -80,6 +79,7 @@ function App() {
               <input
                 type="email"
                 name="email"
+                id="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -88,6 +88,7 @@ function App() {
               <input
                 type="tel"
                 name="phone"
+                id="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 required
@@ -96,12 +97,19 @@ function App() {
               <input
                 type="date"
                 name="dob"
+                id="dob"
                 value={formData.dob}
                 onChange={handleChange}
                 required
               />
-              <button type="submit">Submit</button>
-            </form>
+              <button
+                className="submit-button"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </>
       )}
