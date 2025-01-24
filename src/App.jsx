@@ -46,7 +46,7 @@ function App() {
 
   function validateDate(dob) {
     if (new Date(dob).getTime() > new Date().getTime()) {
-      alert("Invalid phone number. Please enter a 10-digit phone number.");
+      alert("Invalid date of birth. Please enter valid date.");
     }
   }
 
