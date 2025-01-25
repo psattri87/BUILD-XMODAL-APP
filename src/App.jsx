@@ -22,40 +22,41 @@ function App() {
   };
 
   function validatePhoneNumber(phoneNumber) {
-    // Regex pattern for 10-digit phone number
     const pattern = /^\d{10}$/;
-
-    // Validate phone number and update message
-    const isValid = pattern.test(phoneNumber);
-    console.log(isValid);
-    if (!isValid) {
-      alert("Invalid phone number. Please enter a 10-digit phone number.");
-    }
-
-    // Return validation status
-    return isValid;
+    return pattern.test(phoneNumber);
   }
 
   function validateEmail(email) {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    const isValid = regex.test(email);
-    if (!isValid) {
-      alert("Invalid email. Please check your email address.");
-    }
+    return regex.test(email);
   }
 
   function validateDate(dob) {
-    if (new Date(dob).getTime() > new Date().getTime()) {
-      alert("Invalid date of birth. Please enter valid date.");
-    }
+    return new Date(dob).getTime() < new Date().getTime()
   }
 
-  const handleSubmit = () => {
-    validatePhoneNumber(formData.phone);
-    validateEmail(formData.email);
-    validateDate(formData.dob);
-    console.log("Form submitted:", formData);
-    setFormData({ ...formData, name: "", email: "", phone: "", dob: "" });
+  function validateForm() {
+    if (!validateEmail(formData.email)) {
+      alert("Invalid email. Please check your email address.");
+      return false;
+    }
+    if (!validatePhoneNumber(formData.phone)) {
+      alert("Invalid phone number. Please enter a 10-digit phone number.");
+      return false;
+    }
+    if (!validateDate(formData.dob)) {
+      alert("Invalid date of birth. Please enter valid date.");
+      return false;
+    }
+    return true;
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      console.log("Form submitted:", formData);
+      setFormData({ ...formData, name: "", email: "", phone: "", dob: "" });
+    }
   };
 
   const openForm = () => {
@@ -73,7 +74,7 @@ function App() {
       {formVisible && (
         <>
           <div className="overlay" onClick={hideForm}></div>
-          <div className="modal">
+          <form className="modal" onSubmit={handleSubmit}>
             <div className="modal-content">
               <h2>Fill Details</h2>
               <label>Username:</label>
@@ -112,15 +113,11 @@ function App() {
                 onChange={handleChange}
                 required
               />
-              <button
-                className="submit-button"
-                type="submit"
-                onClick={handleSubmit}
-              >
+              <button className="submit-button" type="submit">
                 Submit
               </button>
             </div>
-          </div>
+          </form>
         </>
       )}
     </div>
